@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "vgui/killicons/wep_jack_combine_cr"
+	"$nolod" 1
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+}

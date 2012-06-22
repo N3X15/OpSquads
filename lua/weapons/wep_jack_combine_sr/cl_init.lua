@@ -1,0 +1,92 @@
+include('shared.lua')
+
+language.Add("wep_jack_combine_sr","Combine Sniping Rifle")
+killicon.Add("wep_jack_combine_sr","vgui/killicons/wep_jack_combine_sr",Color(255,255,255,255))
+
+SWEP.PrintName="AI Combine Sniping Rifle"
+SWEP.Slot=1
+SWEP.SlotPos=3
+SWEP.DrawAmmo=false
+SWEP.DrawCrosshair=true
+SWEP.ViewModelFOV=90
+SWEP.ViewModelFlip=false
+
+local GunMat=Material("models/mat_jack_combinesuperpistol")
+
+SWEP.RenderGroup=RENDERGROUP_OPAQUE
+
+function SWEP:DrawHUD()
+end
+
+function SWEP:TranslateFOV(current_fov)
+	return current_fov
+end
+
+function SWEP:DrawWorldModel()
+	//self.Weapon:DrawModel()
+	
+	local pos,ang=self.Owner:GetBonePosition(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+	pos=pos+ang:Forward()*14-ang:Up()*4-ang:Right()
+	self.NiceModel:SetRenderOrigin(pos)
+	ang:RotateAroundAxis(ang:Up(),180)
+	ang:RotateAroundAxis(ang:Forward(),180)
+	ang:RotateAroundAxis(ang:Right(),-15)
+	ang:RotateAroundAxis(ang:Up(),-10)
+	self.NiceModel:SetAngles(ang)
+	self.NiceModel:SetModelScale(Vector(1,1,1))
+	self.BarrelModel:SetModelScale(Vector(4,0.7,0.7))
+	self.UnderBarrel:SetModelScale(Vector(5,0.7,0.7))
+	self.OpticModel:SetModelScale(Vector(0.75,0.13,0.13))
+	self.FrontOptic:SetModelScale(Vector(0.25,0.25,0.25))
+	self.MagModel:SetModelScale(Vector(1,1.25,1))
+	pos=pos-ang:Forward()*15+ang:Up()*-1.5+ang:Right()*0.6
+	self.BarrelModel:SetRenderOrigin(pos)
+	pos=pos+ang:Up()*2
+	self.UnderBarrel:SetRenderOrigin(pos)
+	pos=pos+ang:Up()*2.5+ang:Forward()*13
+	self.OpticModel:SetRenderOrigin(pos)
+	pos=pos+ang:Forward()*5+ang:Up()*0.5
+	self.FrontOptic:SetRenderOrigin(pos)
+	pos=pos+ang:Forward()*-5+ang:Up()*-4+ang:Right()*0.25
+	self.MagModel:SetRenderOrigin(pos)
+	ang:RotateAroundAxis(ang:Right(),7)
+	ang:RotateAroundAxis(ang:Up(),-1)
+	self.BarrelModel:SetAngles(ang)
+	self.UnderBarrel:SetAngles(ang)
+	self.OpticModel:SetAngles(ang)
+	self.FrontOptic:SetAngles(ang)
+	ang:RotateAroundAxis(ang:Right(),-45)
+	ang:RotateAroundAxis(ang:Up(),0)
+	self.MagModel:SetAngles(ang)
+	render.SetColorModulation(0.75,0.75,0.75)
+	if(self:GetDTBool(1))then
+		self.MagModel:DrawModel()
+	end
+	render.MaterialOverride(GunMat)
+	self.NiceModel:DrawModel()
+	self.UnderBarrel:DrawModel()
+	render.MaterialOverride(nil)
+	self.BarrelModel:DrawModel()
+	render.SetColorModulation(0.3,0.3,0.3)
+	self.OpticModel:DrawModel()
+	self.FrontOptic:DrawModel()
+	render.SetColorModulation(1,1,1)
+	
+	if(self:GetDTBool(0))then
+		local pos,ang=self.Owner:GetBonePosition(self.Owner:LookupBone("ValveBiped.Bip01_L_Hand"))
+		self.SpareMag:SetRenderOrigin(pos+ang:Forward()*3+ang:Right()*5-ang:Up()*0.75)
+		self.SpareMag:SetAngles(ang)
+		self.SpareMag:SetModelScale(Vector(1,1,1))
+		render.SetColorModulation(0.75,0.75,0.75)
+		self.SpareMag:DrawModel()
+		render.SetColorModulation(1,1,1)
+	end
+end
+
+function SWEP:DrawWorldModelTranslucent()
+	self.Weapon:DrawModel()
+end
+
+function SWEP:AdjustMouseSensitivity()
+	return nil
+end

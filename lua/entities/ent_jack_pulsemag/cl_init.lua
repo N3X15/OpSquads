@@ -1,0 +1,49 @@
+include('shared.lua')
+
+language.Add("ent_jack_pulsemag", "Empty Combine Pulse Cartridge")
+
+local GunMat=Material("models/mat_jack_combinesuperpistol")
+
+/*---------------------------------------------------------
+   Name: Initialize
+---------------------------------------------------------*/
+function ENT:Initialize()
+	if not(IsValid(self.NiceModel))then
+		if(self:GetDTBool(0))then
+			self.NiceModel=ClientsideModel("models/Items/combine_rifle_cartridge01.mdl")
+		elseif(self:GetDTBool(1))then
+			self.NiceModel=ClientsideModel("models/Items/Flare.mdl")
+		else
+			self.NiceModel=ClientsideModel("models/hunter/plates/plate025.mdl")
+		end
+		self.NiceModel:SetPos(self:GetPos())
+		self.NiceModel:SetNoDraw(true)
+	end
+end
+
+/*---------------------------------------------------------
+   Name: DrawPre
+---------------------------------------------------------*/
+function ENT:Draw()
+	//self.Entity:DrawModel()
+	self.NiceModel:SetRenderOrigin(self:GetPos())
+	self.NiceModel:SetAngles(self:GetAngles())
+	if(self.NiceModel:GetModel()=="models/Items/combine_rifle_cartridge01.mdl")then
+		self.NiceModel:SetModelScale(Vector(0.75,1.2,0.75))
+	elseif(self.NiceModel:GetModel()=="models/hunter/plates/plate025.mdl")then
+		self.NiceModel:SetModelScale(Vector(0.6,0.6,0.6))
+		render.MaterialOverride(GunMat)
+	elseif(self.NiceModel:GetModel()=="models/items/flare.mdl")then
+		render.MaterialOverride(GunMat)
+		//self.NiceModel:SetModelScale(Vector(0.8,0.8,0.8))
+	end
+	if(self:GetDTBool(2))then
+		self.NiceModel:SetModelScale(Vector(1.5,3,1.5))
+	elseif(self:GetDTBool(3))then
+		self.NiceModel:SetModelScale(Vector(0.6,1,0.6))
+	end
+	render.SetColorModulation(0.8,0.8,0.8)
+	self.NiceModel:DrawModel()
+	render.SetColorModulation(1,1,1)
+	render.MaterialOverride(nil)
+end

@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/mat_jack_juggerpigeon"
+	"$alphatest" 1
+}

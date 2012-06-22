@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/combine/badass_sheet"
+	"$envmap" "env_cubemap"
+	"$envmapmask" "models/combine/badass_envmapmask"
+	"$selfillum" "1"
+	"$selfillummask" "models/combine/badass_illummask"
+	//"$bumpmap" "models/combine/badass_normal"
+}

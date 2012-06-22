@@ -1,0 +1,12 @@
+// envmaptint_fix
+"VertexLitGeneric"
+{
+	"$basetexture" "models/mat_jack_combinesuperpistol"
+	"$surfaceprop" "metal"
+	"$bumpmap" "models/mat_jack_combinesuperpistol_normal"
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$envmapcontrast" 1
+	"$envmapsaturation" 1
+	"$envmaptint" "[ .3 .5 .5 ]"
+}

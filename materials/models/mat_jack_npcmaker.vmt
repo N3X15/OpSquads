@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/mat_jack_npcmaker"
+	"$surfaceprop" "metal"
+	"$bumpmap" "Models/props_c17/Oil_Drum001a_normal"
+}
