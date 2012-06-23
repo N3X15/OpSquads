@@ -21,16 +21,16 @@ function ENT:Draw()
 		local CenterOffset=string.len(Text)*2
 
 		cam.Start3D2D(self:GetPos()+Vector(0,0,25)-self.TextDisplayAngle:Forward()*CenterOffset,self.TextDisplayAngle,0.75)
-			draw.DrawText(Text,"DefaultFixedOutline",0,0,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
-			draw.DrawText(SecondText,"DefaultFixedOutline",CenterOffset,-9,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
+			draw.DrawText(Text,"Default",0,0,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
+			draw.DrawText(SecondText,"Default",CenterOffset,-9,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
 		cam.End3D2D()
 		
 		local SecondAngle=self.TextDisplayAngle
 		SecondAngle:RotateAroundAxis(SecondAngle:Forward(),180)
 		SecondAngle:RotateAroundAxis(SecondAngle:Up(),180)
 		cam.Start3D2D(self:GetPos()+Vector(0,0,25)-self.TextDisplayAngle:Forward()*CenterOffset,SecondAngle,0.75)
-			draw.DrawText(Text,"DefaultFixedOutline",0,0,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
-			draw.DrawText(SecondText,"DefaultFixedOutline",CenterOffset,-9,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
+			draw.DrawText(Text,"Default",0,0,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
+			draw.DrawText(SecondText,"Default",CenterOffset,-9,Color(math.Rand(200,255),math.Rand(200,255),math.Rand(200,255),150))
 		cam.End3D2D()
 		
 		if(self.NextAngleIncrementTime<CurTime())then
