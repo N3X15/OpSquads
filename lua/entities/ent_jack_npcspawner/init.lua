@@ -358,24 +358,26 @@ function SetupNPCSpawner(player,command,args)
 end
 
 function ToggleSpawner(ply,command,args) 
-	spawner = ents.GetByIndex(tonumber(args[1]))
-	
-	if spawner == nil then MsgN("Nope.  Can't find a spawner by that ID."); return end
-	
-	if(spawner.Stage=="Dormant")then
-		spawner.Stage="Spawning"
-		timer.Simple(0.1,function()
-			if(IsValid(spawner))then
-				ply:PrintMessage(HUD_PRINTTALK,"Activating spawner "..spawner:EntIndex())
-			end
-		end)
-	elseif(spawner.Stage=="Spawning")then
-		spawner.Stage="Dormant"
-		timer.Simple(0.1,function()
-			if(IsValid(spawner))then
-				ply:PrintMessage(HUD_PRINTTALK,"Deactivating spawner "..spawner:EntIndex())
-			end
-		end)
+	for _,arg in pairs(args) do
+		spawner = ents.GetByIndex(tonumber(arg))
+		
+		if spawner == nil then MsgN("Nope.  Can't find a spawner by that ID."); return end
+		
+		if(spawner.Stage=="Dormant")then
+			spawner.Stage="Spawning"
+			timer.Simple(0.1,function()
+				if(IsValid(spawner))then
+					ply:PrintMessage(HUD_PRINTTALK,"Activating spawner "..spawner:EntIndex())
+				end
+			end)
+		elseif(spawner.Stage=="Spawning")then
+			spawner.Stage="Dormant"
+			timer.Simple(0.1,function()
+				if(IsValid(spawner))then
+					ply:PrintMessage(HUD_PRINTTALK,"Deactivating spawner "..spawner:EntIndex())
+				end
+			end)
+		end
 	end
 end
 

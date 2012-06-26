@@ -12,9 +12,11 @@ EnPeeSeeTable={
 	"Downtrodden",
 	"EliteCP",
 	"EliteGrenadier",
+	"EliteRifleman",
 	"Gunhack",
 	"Rebel",
 	"RebelMedic",
+	"SuperSoldier",
 	"npc_alyx",
 	"npc_antlion",
 	"npc_antlionguard",
@@ -72,6 +74,9 @@ NPCAliases={
 	
 	["EliteCP"]			={"npc_metropolice",false,					false,		false, JACK_Spawn_EliteMetrocop},
 	["EliteGrenadier"]	={"npc_combine_s",	false,					false,		false, JACK_Spawn_EliteGrenadier},
+	["EliteRifleman"]	={"npc_combine_s",	false,					false,		false, JACK_Spawn_EliteRifleman},
+	
+	["SuperSoldier"]	={"npc_combine_s",	false,					false,		"models/Combine_Super_Soldier.mdl",	false}
 }
 NeedsWeaponTable={
 	"npc_combine_s",
